@@ -1,19 +1,12 @@
 {
-  "name": "@namelessfamous/brutnoir-os",
+  "name": "@namelessfamous/brutnoir-pro",
   "version": "0.1.0",
-  "description": "Neobrutal Noir design system — Vintage Mac OS × Windows 95 × modern darkness",
-  "keywords": [
-    "react",
-    "design-system",
-    "ui",
-    "neobrutal",
-    "noir",
-    "nameless-famous"
-  ],
+  "description": "BrutNoir Pro — enterprise admin design system · Nameless Famous",
+  "keywords": ["react", "design-system", "ui", "enterprise", "admin", "noir", "nameless-famous"],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/namelessfamous/brutnoir-os.git"
+    "url": "git+https://github.com/namelessfamous/brutnoir-pro.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -28,9 +21,7 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

@@ -1,184 +1,77 @@
-# @namelessfamous/brutnoir-os
+# @namelessfamous/brutnoir-pro
 
-Neobrutal Noir React design system inspired by vintage desktop UX (Mac OS + Windows 95) with modern dark aesthetics.
+Enterprise-grade dark admin design system for Nameless Famous internal tools (nf-whip, FrontStage, Backstage).
 
-![brutnoir-os screenshot](./screenshot.png)
+Dark-first, monospace-forward, serif headings. Zero dependencies beyond React.
 
-**(DEMO)[https://www.namelessfamous.com/projects/brutnoir-os/demo]**
-
-- Draggable/resizable windows
-- Desktop shell with menu bar + dock/start menu
-- Forms, overlays, typography, and primitives
-- Built-in design tokens + global style injector
-
-## Installation
+## Install
 
 ```bash
-npm install @namelessfamous/brutnoir-os react react-dom
+npm install @namelessfamous/brutnoir-pro
 ```
 
-> This package is published to GitHub Packages. Make sure your project can install from `https://npm.pkg.github.com`.
+> Requires React 18+. Published to GitHub Packages under `@namelessfamous`.
 
-## Quick Start
+## Setup
+
+Wrap your app with `ThemeProvider` and render `GlobalStyles` once:
 
 ```tsx
-import { useState } from "react";
-import {
-	Screen,
-	Window,
-	Header,
-	Text,
-	Button,
-	Modal,
-	Input,
-} from "@namelessfamous/brutnoir-os";
+import { ThemeProvider, GlobalStyles } from "@namelessfamous/brutnoir-pro";
 
-export default function App() {
-	const [open, setOpen] = useState(false);
-
-	return (
-		<Screen>
-			<Window
-				id="welcome"
-				title="NF/OS — Welcome"
-				icon="✦"
-				defaultX={64}
-				defaultY={40}
-				defaultWidth={560}
-				defaultHeight={380}
-			>
-				<div style={{ padding: 20, display: "grid", gap: 12 }}>
-					<Header level={2} accent>
-						Neobrutal Noir
-					</Header>
-					<Text muted>Production-grade darkness. Every pixel earns its place.</Text>
-					<Button variant="primary" onClick={() => setOpen(true)}>
-						Open Modal
-					</Button>
-				</div>
-			</Window>
-
-			<Modal
-				open={open}
-				onClose={() => setOpen(false)}
-				title="Create Project"
-				footer={<Button onClick={() => setOpen(false)}>Close</Button>}
-			>
-				<Input label="Project Name" placeholder="e.g. Ignite 2026" />
-			</Modal>
-		</Screen>
-	);
+export default function App({ children }) {
+  return (
+    <ThemeProvider>
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
+  );
 }
 ```
 
-## Core Concepts
+`ThemeProvider` reads `localStorage["brutnoir-pro-theme"]`, falls back to `prefers-color-scheme`, defaults to dark. Sets `data-theme` on `<html>`.
 
-- `Screen` is the root shell (full viewport). It sets up:
-	- context/state provider
-	- menu bar
-	- dock/start menu
-	- global styles + animation keyframes
-	- managed window rendering + notification stack
-- `Window` can be declared directly in JSX, or opened programmatically via `useScreen().openWindow(...)`.
-- `useScreen()` gives OS-level controls for windows and notifications.
-
-## Exports
-
-### Layout
-
-- `Screen`
-- `Window`
-- `MenuBar` (+ `MenuBarItem` type)
-- `ScreenDock` (+ `DockApp` type)
-
-### Core UI
-
-- Typography: `Header`, `Text`, `Icon`
-- Primitives: `Button`, `ButtonLink`, `Badge`, `Spinner`, `Card`, `Divider`
-
-### Menus
-
-- `MenuDropdown`, `MenuItem`, `MenuDivider`
-
-### Forms
-
-- `Input`
-- `Select`
-- `MultiSelect`
-- `Typeahead`
-- `SelectOption` type
-
-### Overlays
-
-- `Modal`
-- `Notification`
-- `Popover`
-- `NotificationVariant` type
-
-### Hooks / State
-
-- `ScreenProvider`
-- `useScreen`
-- `ScreenContextValue`, `WindowConfig`, `WindowState`, `NotificationConfig`, `NotificationState` types
-
-### Tokens & Styles
-
-- `colors`, `fonts`, `radii`, `shadows`, `tokens`
-- `ColorKey`, `FontKey` types
-- `GlobalStyles`
-
-## Programmatic Window Control
+## Theme
 
 ```tsx
-import { useScreen, Button } from "@namelessfamous/brutnoir-os";
+import { useTheme } from "@namelessfamous/brutnoir-pro";
 
-function LaunchIgnite() {
-	const { openWindow, notify } = useScreen();
-
-	return (
-		<Button
-			variant="primary"
-			onClick={() => {
-				openWindow({
-					id: "ignite",
-					title: "Ignite",
-					icon: "🔥",
-					defaultWidth: 720,
-					defaultHeight: 480,
-					content: <div style={{ padding: 20 }}>Campaign builder</div>,
-				});
-				notify({ title: "Success", message: "Ignite launched", variant: "success" });
-			}}
-		>
-			Launch
-		</Button>
-	);
+function ThemeButton() {
+  const { theme, toggleTheme } = useTheme();
+  return <button onClick={toggleTheme}>{theme}</button>;
 }
 ```
 
-## Styling Notes
+## Components
 
-- Components are style-prop friendly and use inline styles internally.
-- Most components expose `style` and/or `className` for local customization.
-- `GlobalStyles` includes:
-	- Google font imports (`DM Sans`, `DM Mono`, `DM Serif Display`)
-	- reset/base styles
-	- keyframe animations used by components
+| Component | Description |
+|-----------|-------------|
+| `AdminLayout` | Fixed sidebar (220px) + scrollable main area |
+| `Sidebar` | Nav container with title, items, footer |
+| `NavItem` | Sidebar link with active state (green accent) |
+| `PageHeader` | Section + serif title + optional action |
+| `DataTable` | Generic typed table with loading/empty/actions |
+| `Modal` | Dark overlay modal with form + submit support |
+| `Button` | `primary` / `ghost` / `danger`, `sm` / `md` |
+| `Badge` | `success` / `danger` / `info` / `neutral` / `warning` |
+| `Chip` | Colored tag with auto-contrast text, remove button |
+| `ConfirmRow` | Inline confirm-delete table row |
+| `FormField` | Label + error wrapper |
+| `Input` | Borderless input with bottom-border focus |
+| `Textarea` | Same treatment as Input |
+| `Select` | Styled select with focus state |
+| `ColorInput` | Color picker with preview swatch |
+| `ThemeToggle` | Toggle button for dark/light |
+| `GlobalStyles` | Injects CSS vars + base reset |
 
-## TypeScript
+## Design Tokens
 
-The package ships with type declarations and supports strict TypeScript projects.
+CSS variables injected on `:root` (dark) and `[data-theme="light"]`:
 
-## Development
-
-```bash
-npm install
-npm run build
-npm run dev
-npm run typecheck
-```
-
-## License
-
-MIT
-
+- `--bg-primary` / `--bg-surface` / `--bg-elevated`
+- `--border` / `--border-focus`
+- `--text-primary` / `--text-muted` / `--text-dim`
+- `--accent` / `--accent-hover` / `--accent-bg` (green)
+- `--danger` / `--danger-hover` / `--danger-bg`
+- `--info` / `--info-bg`
+- `--font-display` (Georgia serif) / `--font-mono` (Courier New)

@@ -1,62 +1,65 @@
-/**
- * brutnoir-os · Design Tokens
- * Nameless Famous · Neobrutal Noir Design System
- */
+export type ColorKey =
+  | "bg" | "surface" | "border"
+  | "text" | "textMuted" | "textDim"
+  | "green" | "greenHover" | "greenBg"
+  | "red" | "redHover" | "redBg"
+  | "blue" | "blueBg";
 
-export const colors = {
-  // Noir scale
-  noir: "#0a0a0b",
-  noirLight: "#111114",
-  noirMid: "#1a1a1f",
-  noirSurface: "#22222a",
-  noirBorder: "#333340",
-  noirBorderLight: "#44445a",
+export type FontKey = "heading" | "mono";
 
-  // Cream scale
-  cream: "#f5f0e8",
-  creamDim: "#d4cfc6",
-  creamMuted: "#8a8577",
+export const darkTheme: Record<string, string> = {
+  "--bp-bg": "#080808",
+  "--bp-surface": "#0d0d0d",
+  "--bp-border": "#1a1a1a",
+  "--bp-text": "#f0ede6",
+  "--bp-text-muted": "#404040",
+  "--bp-text-dim": "#555555",
+  "--bp-green": "#019458",
+  "--bp-green-hover": "#01b06a",
+  "--bp-green-bg": "#012a18",
+  "--bp-red": "#cc4444",
+  "--bp-red-hover": "#ff6666",
+  "--bp-red-bg": "#120808",
+  "--bp-blue": "#4a9eff",
+  "--bp-blue-bg": "#0a1f3d",
+  "--bp-font-heading": '"Georgia", "Times New Roman", serif',
+  "--bp-font-mono": '"Courier New", monospace',
+};
 
-  // Brand accents
-  acid: "#c8f53c",
-  acidDim: "#9ab82d",
-  crimson: "#e8233a",
-  amber: "#f5a623",
-  ice: "#7eb8d4",
-} as const;
-
-export const fonts = {
-  mono: "'DM Mono', 'Courier New', monospace",
-  display: "'DM Serif Display', 'Georgia', serif",
-  sans: "'DM Sans', 'Helvetica Neue', sans-serif",
-} as const;
-
-export const radii = {
-  none: "0px",
-  sm: "2px",
-} as const;
-
-export const shadows = {
-  // Canonical names
-  default: `3px 3px 0px ${colors.acid}`,
-  sm: `2px 2px 0px ${colors.acid}`,
-  dark: `3px 3px 0px #000`,
-  inset: "inset 2px 2px 0px rgba(0,0,0,0.5)",
-  modal: `6px 6px 0px ${colors.acid}`,
-  // Aliases used by components
-  shadow: `3px 3px 0px ${colors.acid}`,
-  shadowSm: `2px 2px 0px ${colors.acid}`,
-  shadowDark: `3px 3px 0px #000`,
-} as const;
+export const lightTheme: Record<string, string> = {
+  "--bp-bg": "#f5f2ed",
+  "--bp-surface": "#ffffff",
+  "--bp-border": "#e0dbd2",
+  "--bp-text": "#0d0d0d",
+  "--bp-text-muted": "#888880",
+  "--bp-text-dim": "#aaa9a3",
+  "--bp-green": "#019458",
+  "--bp-green-hover": "#017a48",
+  "--bp-green-bg": "#e6f7f0",
+  "--bp-red": "#cc2222",
+  "--bp-red-hover": "#aa1111",
+  "--bp-red-bg": "#fdf0f0",
+  "--bp-blue": "#0055cc",
+  "--bp-blue-bg": "#eef3fd",
+  "--bp-font-heading": '"Georgia", "Times New Roman", serif',
+  "--bp-font-mono": '"Courier New", monospace',
+};
 
 export const tokens = {
-  colors,
-  fonts,
-  radii,
-  shadows,
+  bg: "var(--bp-bg)",
+  surface: "var(--bp-surface)",
+  border: "var(--bp-border)",
+  text: "var(--bp-text)",
+  textMuted: "var(--bp-text-muted)",
+  textDim: "var(--bp-text-dim)",
+  green: "var(--bp-green)",
+  greenHover: "var(--bp-green-hover)",
+  greenBg: "var(--bp-green-bg)",
+  red: "var(--bp-red)",
+  redHover: "var(--bp-red-hover)",
+  redBg: "var(--bp-red-bg)",
+  blue: "var(--bp-blue)",
+  blueBg: "var(--bp-blue-bg)",
+  fontHeading: "var(--bp-font-heading)",
+  fontMono: "var(--bp-font-mono)",
 } as const;
-
-export type ColorKey = keyof typeof colors;
-export type FontKey = keyof typeof fonts;
-
-export default tokens;
