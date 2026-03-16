@@ -2,7 +2,7 @@ import React from "react";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "ghost" | "danger";
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "icon";
   loading?: boolean;
   children: React.ReactNode;
 }
@@ -27,7 +27,15 @@ export function Button({
     transition: "background 0.1s, color 0.1s",
     opacity: disabled || loading ? 0.6 : 1,
     fontSize: size === "sm" ? "0.55rem" : "0.65rem",
-    padding: size === "sm" ? "0.35rem 0.75rem" : "0.55rem 1.25rem",
+    padding:
+      size === "icon" ? "0.45rem" :
+      size === "sm" ? "0.35rem 0.75rem" :
+      "0.55rem 1.25rem",
+    width: size === "icon" ? "2rem" : undefined,
+    height: size === "icon" ? "2rem" : undefined,
+    display: size === "icon" ? "inline-flex" : undefined,
+    alignItems: size === "icon" ? "center" : undefined,
+    justifyContent: size === "icon" ? "center" : undefined,
   };
 
   const variants: Record<string, React.CSSProperties> = {

@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface BadgeProps {
-  variant?: "green" | "red" | "blue" | "gray" | "muted";
+  variant?: "green" | "red" | "blue" | "amber" | "gray" | "muted";
   children: React.ReactNode;
   color?: string; // Custom hex background — auto-derives text color
 }
@@ -20,6 +20,7 @@ const variantStyles: Record<string, React.CSSProperties> = {
   green: { background: "var(--bp-green-bg)", color: "var(--bp-green)" },
   red: { background: "var(--bp-red-bg)", color: "var(--bp-red)" },
   blue: { background: "var(--bp-blue-bg)", color: "var(--bp-blue)" },
+  amber: { background: "rgba(194, 120, 0, 0.15)", color: "#c27800" },
   gray: { background: "#2a2a2a", color: "#555555" },
   muted: { background: "transparent", color: "var(--bp-text-muted)" },
 };

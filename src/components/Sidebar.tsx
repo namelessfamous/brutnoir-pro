@@ -6,23 +6,85 @@ export interface SidebarItem {
   exact?: boolean; // if true, only highlight on exact path match
 }
 
+export interface SidebarGroup {
+  title?: string;
+  items: SidebarItem[];
+}
+
 export interface SidebarProps {
   title: string;
   subtitle?: string;
-  items: SidebarItem[];
+  /** Flat list of nav items (use groups for sections with titles) */
+  items?: SidebarItem[];
+  /** Grouped nav items with optional section headings */
+  groups?: SidebarGroup[];
   activePath: string;
   onLogout?: () => void;
   footer?: React.ReactNode;
+  /** Custom link renderer — defaults to native <a>. Pass Next.js <Link> for SPA navigation. */
+  LinkComponent?: React.ElementType;
+}
+
+function NavLink({
+  item,
+  activePath,
+  LinkComponent = "a",
+}: {
+  item: SidebarItem;
+  activePath: string;
+  LinkComponent?: React.ElementType;
+}): React.ReactElement {
+  const isActive = item.exact
+    ? activePath === item.href
+    : activePath === item.href || activePath.startsWith(item.href + "/");
+
+  const linkStyle: React.CSSProperties = {
+    display: "block",
+    padding: "0.6rem 1.5rem",
+    fontFamily: "var(--bp-font-mono)",
+    fontSize: "0.6rem",
+    letterSpacing: "0.2em",
+    textDecoration: "none",
+    color: isActive ? "var(--bp-green)" : "var(--bp-text-muted)",
+    background: isActive ? "var(--bp-green-bg)" : "transparent",
+    borderLeft: isActive ? "2px solid var(--bp-green)" : "2px solid transparent",
+    transition: "color 0.1s, background 0.1s",
+  };
+
+  return (
+    <LinkComponent
+      href={item.href}
+      style={linkStyle}
+      onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isActive) {
+          (e.currentTarget as HTMLAnchorElement).style.color = "var(--bp-text)";
+        }
+      }}
+      onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isActive) {
+          (e.currentTarget as HTMLAnchorElement).style.color = "var(--bp-text-muted)";
+        }
+      }}
+    >
+      {item.label}
+    </LinkComponent>
+  );
 }
 
 export function Sidebar({
   title,
   subtitle,
   items,
+  groups,
   activePath,
   onLogout,
   footer,
+  LinkComponent = "a",
 }: SidebarProps): React.ReactElement {
+  // Normalise to groups array for rendering
+  const resolvedGroups: SidebarGroup[] =
+    groups ?? (items ? [{ items }] : []);
+
   return (
     <div
       style={{
@@ -37,6 +99,7 @@ export function Sidebar({
         flexDirection: "column",
         padding: "2rem 0",
         zIndex: 100,
+        overflowY: "auto",
       }}
     >
       {/* Title */}
@@ -67,47 +130,34 @@ export function Sidebar({
         )}
       </div>
 
-      {/* Nav items */}
+      {/* Nav */}
       <nav style={{ flex: 1 }}>
-        {items.map((item) => {
-          const isActive = item.exact
-            ? activePath === item.href
-            : activePath === item.href || activePath.startsWith(item.href + "/");
-          return (
-            <a
-              key={item.href}
-              href={item.href}
-              style={{
-                display: "block",
-                padding: "0.6rem 1.5rem",
-                fontFamily: "var(--bp-font-mono)",
-                fontSize: "0.6rem",
-                letterSpacing: "0.2em",
-                textDecoration: "none",
-                color: isActive ? "var(--bp-green)" : "var(--bp-text-muted)",
-                background: isActive ? "var(--bp-green-bg)" : "transparent",
-                borderLeft: isActive
-                  ? "2px solid var(--bp-green)"
-                  : "2px solid transparent",
-                transition: "color 0.1s, background 0.1s",
-              }}
-              onMouseEnter={(e) => {
-                if (!isActive) {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.color = "var(--bp-text)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.color = "var(--bp-text-muted)";
-                }
-              }}
-            >
-              {item.label}
-            </a>
-          );
-        })}
+        {resolvedGroups.map((group, gi) => (
+          <div key={gi} style={{ marginBottom: group.title ? "0.5rem" : 0 }}>
+            {group.title && (
+              <div
+                style={{
+                  padding: "0.75rem 1.5rem 0.35rem",
+                  fontFamily: "var(--bp-font-mono)",
+                  fontSize: "0.45rem",
+                  letterSpacing: "0.25em",
+                  color: "var(--bp-text-dim)",
+                  textTransform: "uppercase",
+                }}
+              >
+                {group.title}
+              </div>
+            )}
+            {group.items.map((item) => (
+              <NavLink
+                key={item.href}
+                item={item}
+                activePath={activePath}
+                LinkComponent={LinkComponent}
+              />
+            ))}
+          </div>
+        ))}
       </nav>
 
       {/* Footer */}
