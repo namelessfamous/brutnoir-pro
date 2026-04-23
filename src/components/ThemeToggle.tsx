@@ -13,7 +13,7 @@ export function ThemeToggle(): React.ReactElement {
         border: "none",
         cursor: "pointer",
         fontFamily: "var(--bp-font-mono)",
-        fontSize: "0.6rem",
+        fontSize: "0.75rem",
         letterSpacing: "0.2em",
         color: "var(--bp-text-muted)",
         padding: 0,

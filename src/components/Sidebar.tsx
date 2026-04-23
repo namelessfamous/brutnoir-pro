@@ -42,7 +42,7 @@ function NavLink({
     display: "block",
     padding: "0.6rem 1.5rem",
     fontFamily: "var(--bp-font-mono)",
-    fontSize: "0.6rem",
+    fontSize: "0.75rem",
     letterSpacing: "0.2em",
     textDecoration: "none",
     color: isActive ? "var(--bp-green)" : "var(--bp-text-muted)",
@@ -118,7 +118,7 @@ export function Sidebar({
           <div
             style={{
               fontFamily: "var(--bp-font-mono)",
-              fontSize: "0.5rem",
+              fontSize: "0.65rem",
               color: "var(--bp-text-muted)",
               letterSpacing: "0.2em",
               marginTop: "0.25rem",
@@ -139,7 +139,7 @@ export function Sidebar({
                 style={{
                   padding: "0.75rem 1.5rem 0.35rem",
                   fontFamily: "var(--bp-font-mono)",
-                  fontSize: "0.45rem",
+                  fontSize: "0.65rem",
                   letterSpacing: "0.25em",
                   color: "var(--bp-text-dim)",
                   textTransform: "uppercase",
@@ -170,7 +170,7 @@ export function Sidebar({
               border: "none",
               cursor: "pointer",
               fontFamily: "var(--bp-font-mono)",
-              fontSize: "0.55rem",
+              fontSize: "0.7rem",
               letterSpacing: "0.2em",
               color: "var(--bp-text-muted)",
               padding: 0,

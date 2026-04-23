@@ -26,7 +26,7 @@ export function Button({
     cursor: disabled || loading ? "not-allowed" : "pointer",
     transition: "background 0.1s, color 0.1s",
     opacity: disabled || loading ? 0.6 : 1,
-    fontSize: size === "sm" ? "0.55rem" : "0.65rem",
+    fontSize: size === "sm" ? "0.7rem" : "0.8rem",
     padding:
       size === "icon" ? "0.45rem" :
       size === "sm" ? "0.35rem 0.75rem" :

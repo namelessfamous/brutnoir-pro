@@ -8,12 +8,12 @@ export type ColorKey =
 export type FontKey = "heading" | "mono";
 
 export const darkTheme: Record<string, string> = {
-  "--bp-bg": "#080808",
-  "--bp-surface": "#0d0d0d",
-  "--bp-border": "#1a1a1a",
-  "--bp-text": "#f0ede6",
-  "--bp-text-muted": "#404040",
-  "--bp-text-dim": "#555555",
+  "--bp-bg": "#0a0a0a",
+  "--bp-surface": "#111111",
+  "--bp-border": "#1e1e1e",
+  "--bp-text": "#e8e4dc",
+  "--bp-text-muted": "#4a4a4a",
+  "--bp-text-dim": "#5e5e5e",
   "--bp-green": "#019458",
   "--bp-green-hover": "#01b06a",
   "--bp-green-bg": "#012a18",
@@ -22,17 +22,17 @@ export const darkTheme: Record<string, string> = {
   "--bp-red-bg": "#120808",
   "--bp-blue": "#4a9eff",
   "--bp-blue-bg": "#0a1f3d",
-  "--bp-font-heading": '"Georgia", "Times New Roman", serif',
-  "--bp-font-mono": '"Courier New", monospace',
+  "--bp-font-heading": "'obviously-variable', 'Georgia', 'Times New Roman', serif",
+  "--bp-font-mono": "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
 };
 
 export const lightTheme: Record<string, string> = {
-  "--bp-bg": "#f5f2ed",
+  "--bp-bg": "#f0ece5",
   "--bp-surface": "#ffffff",
-  "--bp-border": "#e0dbd2",
-  "--bp-text": "#0d0d0d",
-  "--bp-text-muted": "#888880",
-  "--bp-text-dim": "#aaa9a3",
+  "--bp-border": "#d8d3c9",
+  "--bp-text": "#121210",
+  "--bp-text-muted": "#7e7e76",
+  "--bp-text-dim": "#9e9d96",
   "--bp-green": "#019458",
   "--bp-green-hover": "#017a48",
   "--bp-green-bg": "#e6f7f0",
@@ -41,8 +41,8 @@ export const lightTheme: Record<string, string> = {
   "--bp-red-bg": "#fdf0f0",
   "--bp-blue": "#0055cc",
   "--bp-blue-bg": "#eef3fd",
-  "--bp-font-heading": '"Georgia", "Times New Roman", serif',
-  "--bp-font-mono": '"Courier New", monospace',
+  "--bp-font-heading": "'obviously-variable', 'Georgia', 'Times New Roman', serif",
+  "--bp-font-mono": "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
 };
 
 export const tokens = {

@@ -20,7 +20,7 @@ export function PageHeader({ section, title, action }: PageHeaderProps): React.R
         <div
           style={{
             fontFamily: "var(--bp-font-mono)",
-            fontSize: "0.6rem",
+            fontSize: "0.75rem",
             letterSpacing: "0.3em",
             color: "var(--bp-text-muted)",
             textTransform: "uppercase",

@@ -43,7 +43,7 @@ export function Badge({
       style={{
         display: "inline-block",
         fontFamily: "var(--bp-font-mono)",
-        fontSize: "0.5rem",
+        fontSize: "0.65rem",
         letterSpacing: "0.15em",
         padding: "0.15rem 0.4rem",
         textTransform: "uppercase",

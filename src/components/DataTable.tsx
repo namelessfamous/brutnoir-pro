@@ -38,7 +38,7 @@ export function DataTable<T extends { id: number }>({
 
   const headerStyle: React.CSSProperties = {
     fontFamily: "var(--bp-font-mono)",
-    fontSize: "0.5rem",
+    fontSize: "0.7rem",
     letterSpacing: "0.2em",
     color: "var(--bp-text-muted)",
     textTransform: "uppercase",
@@ -71,7 +71,7 @@ export function DataTable<T extends { id: number }>({
                 padding: "2rem 1rem",
                 textAlign: "center",
                 fontFamily: "var(--bp-font-mono)",
-                fontSize: "0.6rem",
+                fontSize: "0.75rem",
                 color: "var(--bp-text-muted)",
                 letterSpacing: "0.2em",
               }}
@@ -87,7 +87,7 @@ export function DataTable<T extends { id: number }>({
                 padding: "2rem 1rem",
                 textAlign: "center",
                 fontFamily: "var(--bp-font-mono)",
-                fontSize: "0.6rem",
+                fontSize: "0.75rem",
                 color: "var(--bp-text-muted)",
                 letterSpacing: "0.2em",
               }}
@@ -112,7 +112,7 @@ export function DataTable<T extends { id: number }>({
             const cellStyle: React.CSSProperties = {
               padding: "0.65rem 1rem",
               fontFamily: "var(--bp-font-mono)",
-              fontSize: "0.65rem",
+              fontSize: "0.8rem",
               color: "var(--bp-text)",
               borderBottom: "1px solid var(--bp-border)",
               background: idx % 2 === 0 ? "var(--bp-bg)" : "var(--bp-surface)",
@@ -162,7 +162,7 @@ export function DataTable<T extends { id: number }>({
                           border: "none",
                           cursor: "pointer",
                           fontFamily: "var(--bp-font-mono)",
-                          fontSize: "0.55rem",
+                          fontSize: "0.7rem",
                           letterSpacing: "0.15em",
                           color: "var(--bp-text-muted)",
                           textTransform: "uppercase",
@@ -188,7 +188,7 @@ export function DataTable<T extends { id: number }>({
                           border: "none",
                           cursor: "pointer",
                           fontFamily: "var(--bp-font-mono)",
-                          fontSize: "0.55rem",
+                          fontSize: "0.7rem",
                           letterSpacing: "0.15em",
                           color: "var(--bp-text-muted)",
                           textTransform: "uppercase",
