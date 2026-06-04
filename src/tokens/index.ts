@@ -7,40 +7,41 @@ export type ColorKey =
 
 export type FontKey = "heading" | "mono";
 
+// NF1 palette — Blue Smoke neutrals base, Scarlet error, Inch Worm success, Galliano warning
 export const darkTheme: Record<string, string> = {
-  "--bp-bg": "#0a0a0a",
-  "--bp-surface": "#111111",
-  "--bp-border": "#1e1e1e",
-  "--bp-text": "#e8e4dc",
-  "--bp-text-muted": "#4a4a4a",
-  "--bp-text-dim": "#5e5e5e",
-  "--bp-green": "#019458",
-  "--bp-green-hover": "#01b06a",
-  "--bp-green-bg": "#012a18",
-  "--bp-red": "#cc4444",
-  "--bp-red-hover": "#ff6666",
-  "--bp-red-bg": "#120808",
-  "--bp-blue": "#4a9eff",
-  "--bp-blue-bg": "#0a1f3d",
+  "--bp-bg": "#031212",         // Blue Smoke 950 — deep teal-black
+  "--bp-surface": "#112726",    // Blue Smoke 900
+  "--bp-border": "#1f3734",     // Blue Smoke 800
+  "--bp-text": "#fafafa",       // Tuatara 50 — clean white
+  "--bp-text-muted": "#9cafae", // Blue Smoke 400 — high-contrast muted
+  "--bp-text-dim": "#748b8a",   // Blue Smoke 500
+  "--bp-green": "#7eaf01",      // Inch Worm 600 — softened lime-green
+  "--bp-green-hover": "#a3da08", // Inch Worm 500
+  "--bp-green-bg": "#203102",   // Inch Worm 950
+  "--bp-red": "#f1300e",        // Scarlet 600 — warm orange-red
+  "--bp-red-hover": "#ff4f30",  // Scarlet 500
+  "--bp-red-bg": "#4c0e03",     // Scarlet 950
+  "--bp-blue": "#4a8fc8",       // Complementary muted blue (teal-adjusted)
+  "--bp-blue-bg": "#061e2e",    // Deep muted blue bg
   "--bp-font-heading": "'obviously-variable', 'Georgia', 'Times New Roman', serif",
   "--bp-font-mono": "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
 };
 
 export const lightTheme: Record<string, string> = {
-  "--bp-bg": "#f0ece5",
+  "--bp-bg": "#f9fbfb",         // Blue Smoke 50 — cool off-white
   "--bp-surface": "#ffffff",
-  "--bp-border": "#d8d3c9",
-  "--bp-text": "#121210",
-  "--bp-text-muted": "#7e7e76",
-  "--bp-text-dim": "#9e9d96",
-  "--bp-green": "#019458",
-  "--bp-green-hover": "#017a48",
-  "--bp-green-bg": "#e6f7f0",
-  "--bp-red": "#cc2222",
-  "--bp-red-hover": "#aa1111",
-  "--bp-red-bg": "#fdf0f0",
-  "--bp-blue": "#0055cc",
-  "--bp-blue-bg": "#eef3fd",
+  "--bp-border": "#d1dbda",     // Blue Smoke 300
+  "--bp-text": "#031212",       // Blue Smoke 950 — deep teal-black text
+  "--bp-text-muted": "#4b6360", // Blue Smoke 600
+  "--bp-text-dim": "#748b8a",   // Blue Smoke 500
+  "--bp-green": "#7eaf01",      // Inch Worm 600
+  "--bp-green-hover": "#5f8407", // Inch Worm 700
+  "--bp-green-bg": "#fbffe5",   // Inch Worm 50
+  "--bp-red": "#cb270a",        // Scarlet 700 — darkened for light bg
+  "--bp-red-hover": "#a8230c",  // Scarlet 800
+  "--bp-red-bg": "#fff3f1",     // Scarlet 50
+  "--bp-blue": "#1c6fa0",       // Complementary muted blue
+  "--bp-blue-bg": "#f0f8ff",    // Light blue bg
   "--bp-font-heading": "'obviously-variable', 'Georgia', 'Times New Roman', serif",
   "--bp-font-mono": "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
 };
