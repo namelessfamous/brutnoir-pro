@@ -5,7 +5,11 @@ export type ColorKey =
   | "red" | "redHover" | "redBg"
   | "blue" | "blueBg"
   | "warning" | "warningHover" | "warningBg"
-  | "tertiary" | "neutral";
+  | "tertiary" | "neutral"
+  | "cyan" | "cyanBg"
+  | "purple" | "purpleBg"
+  | "orange" | "orangeBg"
+  | "pink" | "pinkBg";
 
 export type FontKey = "heading" | "mono";
 
@@ -50,6 +54,22 @@ export const darkTheme: Record<string, string> = {
   // ── Neutral (muted mauve) ─────────────────────────────────────────────────
   "--bp-neutral":       "#8C738B",    // neutral-500
 
+  // ── Cyan (teal-ish) ───────────────────────────────────────────────────────
+  "--bp-cyan":          "#22D3EE",    // cyan-400
+  "--bp-cyan-bg":       "#083344",    // cyan-950
+
+  // ── Purple ────────────────────────────────────────────────────────────────
+  "--bp-purple":        "#A78BFA",    // violet-400
+  "--bp-purple-bg":     "#2E1065",    // violet-950
+
+  // ── Orange ────────────────────────────────────────────────────────────────
+  "--bp-orange":        "#FB923C",    // orange-400
+  "--bp-orange-bg":     "#431407",    // orange-950
+
+  // ── Pink ──────────────────────────────────────────────────────────────────
+  "--bp-pink":          "#F472B6",    // pink-400
+  "--bp-pink-bg":       "#500724",    // pink-950
+
   // ── Typography stacks ─────────────────────────────────────────────────────
   "--bp-font-heading":  "'obviously-variable', 'Georgia', 'Times New Roman', serif",
   "--bp-font-mono":     "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
@@ -91,6 +111,22 @@ export const lightTheme: Record<string, string> = {
   // ── Neutral ───────────────────────────────────────────────────────────────
   "--bp-neutral":       "#624B61",    // neutral-600
 
+  // ── Cyan ──────────────────────────────────────────────────────────────────
+  "--bp-cyan":          "#0891B2",    // cyan-600 (darkened for light bg)
+  "--bp-cyan-bg":       "#ECFEFF",    // cyan-50
+
+  // ── Purple ────────────────────────────────────────────────────────────────
+  "--bp-purple":        "#7C3AED",    // violet-600 (darkened for light bg)
+  "--bp-purple-bg":     "#F5F3FF",    // violet-50
+
+  // ── Orange ────────────────────────────────────────────────────────────────
+  "--bp-orange":        "#EA580C",    // orange-600 (darkened for light bg)
+  "--bp-orange-bg":     "#FFF7ED",    // orange-50
+
+  // ── Pink ──────────────────────────────────────────────────────────────────
+  "--bp-pink":          "#DB2777",    // pink-600 (darkened for light bg)
+  "--bp-pink-bg":       "#FDF2F8",    // pink-50
+
   // ── Typography stacks ─────────────────────────────────────────────────────
   "--bp-font-heading":  "'obviously-variable', 'Georgia', 'Times New Roman', serif",
   "--bp-font-mono":     "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
@@ -116,6 +152,14 @@ export const tokens = {
   warningBg:     "var(--bp-warning-bg)",
   tertiary:      "var(--bp-tertiary)",
   neutral:       "var(--bp-neutral)",
+  cyan:          "var(--bp-cyan)",
+  cyanBg:        "var(--bp-cyan-bg)",
+  purple:        "var(--bp-purple)",
+  purpleBg:      "var(--bp-purple-bg)",
+  orange:        "var(--bp-orange)",
+  orangeBg:      "var(--bp-orange-bg)",
+  pink:          "var(--bp-pink)",
+  pinkBg:        "var(--bp-pink-bg)",
   fontHeading:   "var(--bp-font-heading)",
   fontMono:      "var(--bp-font-mono)",
 } as const;
