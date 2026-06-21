@@ -1,11 +1,11 @@
 /**
- * brutnoir-pro v0.3
+ * brutnoir-pro v0.4
  * Enterprise Dark Admin Design System · Nameless Famous
  * Win95/Brutalist aesthetic — dark, bold, structured.
  */
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
-export { darkTheme, lightTheme, tokens } from "./tokens";
+export { darkTheme, lightTheme, tokens, palette } from "./tokens";
 export type { ColorKey, FontKey, SpaceKey, TextSizeKey, RadiusKey, ZKey } from "./tokens";
 
 // ── Global Styles ─────────────────────────────────────────────────────────────
@@ -40,6 +40,9 @@ export { Tooltip } from "./primitives/Tooltip";
 export type { TooltipProps } from "./primitives/Tooltip";
 
 export { ThemeToggle } from "./primitives/ThemeToggle";
+
+export { NfSvgIcon, COLOR_VAR, makeIcon } from "./primitives/NfSvgIcon";
+export type { NfSvgIconProps, NfIconColor } from "./primitives/NfSvgIcon";
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 export { AdminLayout, NavItem } from "./layout/AdminLayout";
@@ -101,6 +104,9 @@ export type { FormFieldProps } from "./data/FormField";
 
 export { ColorInput } from "./data/ColorInput";
 export type { ColorInputProps } from "./data/ColorInput";
+
+export { JsonTreeEditor } from "./data/JsonTreeEditor";
+export type { JsonTreeEditorProps } from "./data/JsonTreeEditor";
 
 // ── Messaging ─────────────────────────────────────────────────────────────────
 export { MessageBubble } from "./messaging/MessageBubble";

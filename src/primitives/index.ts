@@ -23,3 +23,6 @@ export { Tooltip } from "./Tooltip";
 export type { TooltipProps } from "./Tooltip";
 
 export { ThemeToggle } from "./ThemeToggle";
+
+export { NfSvgIcon, COLOR_VAR, makeIcon } from "./NfSvgIcon";
+export type { NfSvgIconProps, NfIconColor } from "./NfSvgIcon";
