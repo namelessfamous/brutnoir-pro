@@ -133,3 +133,50 @@ export type {
 // ── Composite ─────────────────────────────────────────────────────────────────
 export { SelectionCard } from "./composite/SelectionCard";
 export type { SelectionCardProps } from "./composite/SelectionCard";
+
+// ── E-Commerce ────────────────────────────────────────────────────────────────
+export type {
+  Product,
+  ProductVariant,
+  CartItem,
+  WishlistItem,
+  RecentlyViewedItem,
+  SortOption,
+  FilterConfig,
+  CompareField,
+  SearchProduct,
+  RenderLink,
+  RenderLinkProps,
+} from "./ecommerce/types";
+export { defaultRenderLink } from "./ecommerce/helpers";
+
+export { ProductCard } from "./ecommerce/ProductCard";
+export type { ProductCardProps } from "./ecommerce/ProductCard";
+
+export { ProductDetail } from "./ecommerce/ProductDetail";
+export type {
+  ProductDetailProps,
+  ProductDetailBreadcrumb,
+  ProductDetailReviews,
+} from "./ecommerce/ProductDetail";
+
+export { CartPopover } from "./ecommerce/CartPopover";
+export type { CartPopoverProps } from "./ecommerce/CartPopover";
+
+export { CollectionGrid } from "./ecommerce/CollectionGrid";
+export type { CollectionGridProps } from "./ecommerce/CollectionGrid";
+
+export { CompareDrawer } from "./ecommerce/CompareDrawer";
+export type { CompareDrawerProps } from "./ecommerce/CompareDrawer";
+
+export { ProductQuickview } from "./ecommerce/ProductQuickview";
+export type { ProductQuickviewProps } from "./ecommerce/ProductQuickview";
+
+export { SearchCommand } from "./ecommerce/SearchCommand";
+export type { SearchCommandProps } from "./ecommerce/SearchCommand";
+
+export { Wishlist } from "./ecommerce/Wishlist";
+export type { WishlistProps } from "./ecommerce/Wishlist";
+
+export { RecentlyViewed } from "./ecommerce/RecentlyViewed";
+export type { RecentlyViewedProps } from "./ecommerce/RecentlyViewed";
