@@ -85,7 +85,9 @@ export function ProductDetail({
   const [smartVariant, setSmartVariant] = useState<ProductVariant | null>(null);
 
   const hasVariants = (product.variants?.length ?? 0) > 0;
-  const useSmartSel = hasVariants && canUseSmartSelector(product.variants!);
+  const availableVariants = product.variants?.filter(v => v.availableForSale !== false) ?? [];
+  const isSingleVariant = availableVariants.length <= 1;
+  const useSmartSel = hasVariants && !isSingleVariant && canUseSmartSelector(product.variants!);
 
   // When smart selector is active, use the smart-picked variant (falling back
   // to the first variant for display-only fields like price/free check).
@@ -273,8 +275,9 @@ export function ProductDetail({
             onSubmit={handleSubmit}
             style={{ marginTop: "2rem" }}
           >
-            {/* Variant selector — Smart (size+color) or flat grid */}
-            {product.variants && product.variants.length > 0 && (
+            {/* Variant selector — Smart (size+color) or flat grid.
+             * Hidden entirely when only one available variant exists. */}
+            {product.variants && product.variants.length > 0 && !isSingleVariant && (
               useSmartSel ? (
                 <SmartVariantSelector
                   variants={product.variants}
