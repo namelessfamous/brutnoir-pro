@@ -138,6 +138,7 @@ export type { SelectionCardProps } from "./composite/SelectionCard";
 export type {
   Product,
   ProductVariant,
+  VariantOptionGroup,
   CartItem,
   WishlistItem,
   RecentlyViewedItem,
@@ -180,3 +181,10 @@ export type { WishlistProps } from "./ecommerce/Wishlist";
 
 export { RecentlyViewed } from "./ecommerce/RecentlyViewed";
 export type { RecentlyViewedProps } from "./ecommerce/RecentlyViewed";
+
+export {
+  SmartVariantSelector,
+  canUseSmartSelector,
+  DEFAULT_CLOTHING_COLORS,
+} from "./ecommerce/SmartVariantSelector";
+export type { SmartVariantSelectorProps } from "./ecommerce/SmartVariantSelector";

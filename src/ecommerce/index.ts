@@ -8,6 +8,7 @@
 export type {
   Product,
   ProductVariant,
+  VariantOptionGroup,
   CartItem,
   WishlistItem,
   RecentlyViewedItem,
@@ -51,3 +52,6 @@ export type { WishlistProps } from "./Wishlist";
 
 export { RecentlyViewed } from "./RecentlyViewed";
 export type { RecentlyViewedProps } from "./RecentlyViewed";
+
+export { default as SmartVariantSelector, canUseSmartSelector, DEFAULT_CLOTHING_COLORS } from "./SmartVariantSelector";
+export type { SmartVariantSelectorProps } from "./SmartVariantSelector";

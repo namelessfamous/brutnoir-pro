@@ -7,6 +7,7 @@
 import React, { useState } from "react";
 import type { Product, ProductVariant, RenderLink } from "./types";
 import { defaultRenderLink } from "./helpers";
+import SmartVariantSelector, { canUseSmartSelector } from "./SmartVariantSelector";
 
 export interface ProductDetailBreadcrumb {
   id: string | number;
@@ -39,6 +40,16 @@ export interface ProductDetailProps {
   renderLink?: RenderLink;
   /** Override accent color. Defaults to var(--bp-orange) */
   accentColor?: string;
+  /**
+   * Color name → CSS hex map passed to SmartVariantSelector.
+   * Defaults to DEFAULT_CLOTHING_COLORS. Consumers can spread and extend.
+   */
+  colorMap?: Record<string, string>;
+  /**
+   * Ordered list of recognised size tokens passed to SmartVariantSelector.
+   * Defaults to ["XS","S","M","L","XL","2XL","3XL","4XL","5XL","One size"].
+   */
+  sizeTokens?: string[];
 }
 
 const heartPath =
@@ -62,13 +73,32 @@ export function ProductDetail({
   successMessage,
   renderLink = defaultRenderLink,
   accentColor = "var(--bp-orange)",
+  colorMap,
+  sizeTokens,
 }: ProductDetailProps): React.ReactElement {
   const [internalVariant, setInternalVariant] = useState<ProductVariant>(
     product.variants?.[0] ?? { name: "Default" }
   );
   const [internalQty, setInternalQty] = useState(1);
 
-  const selectedVariant = controlledVariant ?? internalVariant;
+  // Smart selector state — only used when canUseSmartSelector returns true
+  const [smartVariant, setSmartVariant] = useState<ProductVariant | null>(null);
+
+  const hasVariants = (product.variants?.length ?? 0) > 0;
+  const useSmartSel = hasVariants && canUseSmartSelector(product.variants!);
+
+  // When smart selector is active, use the smart-picked variant (falling back
+  // to the first variant for display-only fields like price/free check).
+  // When inactive, use controlled or internal variant as before.
+  const selectedVariant = useSmartSel
+    ? (controlledVariant ?? smartVariant ?? product.variants?.[0] ?? { name: "Default" })
+    : (controlledVariant ?? internalVariant);
+
+  // The variant actually submitted — null in smart mode until user has picked
+  const submitVariant = useSmartSel ? smartVariant : selectedVariant;
+  // Disable CTA while smart selector hasn't made a full selection
+  const smartPending = useSmartSel && submitVariant === null && controlledVariant === undefined;
+
   const quantity = controlledQty ?? internalQty;
 
   const setVariant = (v: ProductVariant) => {
@@ -99,8 +129,8 @@ export function ProductDetail({
     e.preventDefault();
     if (effectiveFree) {
       onDownload?.(product);
-    } else {
-      onAddToCart?.(product, selectedVariant, quantity);
+    } else if (submitVariant) {
+      onAddToCart?.(product, submitVariant, quantity);
     }
   };
 
@@ -243,92 +273,105 @@ export function ProductDetail({
             onSubmit={handleSubmit}
             style={{ marginTop: "2rem" }}
           >
-            {/* Variant selector */}
+            {/* Variant selector — Smart (size+color) or flat grid */}
             {product.variants && product.variants.length > 0 && (
-              <fieldset style={{ border: "none", padding: 0, margin: 0 }}>
-                <legend
-                  style={{
-                    fontFamily: "var(--bp-font-mono)",
-                    fontSize: "var(--bp-text-xs)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.18em",
-                    color: "var(--bp-text-dim)",
-                    marginBottom: "0.75rem",
+              useSmartSel ? (
+                <SmartVariantSelector
+                  variants={product.variants}
+                  onVariantChange={(v) => {
+                    setSmartVariant(v);
+                    if (v) onVariantChange?.(v);
                   }}
-                >
-                  Variant
-                </legend>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
-                    gap: "0.75rem",
-                  }}
-                >
-                  {product.variants.map((variant) => {
-                    const active = selectedVariant.name === variant.name;
-                    return (
-                      <label
-                        key={variant.name}
-                        style={{
-                          position: "relative",
-                          display: "flex",
-                          cursor: "pointer",
-                          border: `2px solid ${active ? accentColor : "var(--bp-border)"}`,
-                          background: active ? `color-mix(in srgb, ${accentColor} 8%, var(--bp-surface))` : "var(--bp-surface)",
-                          padding: "1rem",
-                          transition: "border-color var(--bp-transition), background var(--bp-transition)",
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!active) (e.currentTarget as HTMLLabelElement).style.borderColor = "var(--bp-text-muted)";
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!active) (e.currentTarget as HTMLLabelElement).style.borderColor = "var(--bp-border)";
-                        }}
-                      >
-                        <input
-                          type="radio"
-                          name="variant"
-                          value={variant.name}
-                          checked={active}
-                          onChange={() => setVariant(variant)}
-                          style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
-                        />
-                        <div style={{ flex: 1 }}>
-                          <span
-                            style={{
-                              display: "block",
-                              fontFamily: "var(--bp-font-heading)",
-                              fontSize: "var(--bp-text-sm)",
-                              textTransform: "uppercase",
-                              color: "var(--bp-text)",
-                            }}
-                          >
-                            {variant.name}
-                          </span>
-                          {variant.description && (
-                            <span style={{ display: "block", marginTop: "0.25rem", fontFamily: "var(--bp-font-mono)", fontSize: "var(--bp-text-xs)", color: "var(--bp-text-dim)" }}>
-                              {variant.description}
+                  accentColor={accentColor}
+                  colorMap={colorMap}
+                  sizeTokens={sizeTokens}
+                />
+              ) : (
+                <fieldset style={{ border: "none", padding: 0, margin: 0 }}>
+                  <legend
+                    style={{
+                      fontFamily: "var(--bp-font-mono)",
+                      fontSize: "var(--bp-text-xs)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.18em",
+                      color: "var(--bp-text-dim)",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    Variant
+                  </legend>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
+                      gap: "0.75rem",
+                    }}
+                  >
+                    {product.variants.map((variant) => {
+                      const active = selectedVariant.name === variant.name;
+                      return (
+                        <label
+                          key={variant.name}
+                          style={{
+                            position: "relative",
+                            display: "flex",
+                            cursor: "pointer",
+                            border: `2px solid ${active ? accentColor : "var(--bp-border)"}`,
+                            background: active ? `color-mix(in srgb, ${accentColor} 8%, var(--bp-surface))` : "var(--bp-surface)",
+                            padding: "1rem",
+                            transition: "border-color var(--bp-transition), background var(--bp-transition)",
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!active) (e.currentTarget as HTMLLabelElement).style.borderColor = "var(--bp-text-muted)";
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!active) (e.currentTarget as HTMLLabelElement).style.borderColor = "var(--bp-border)";
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            name="variant"
+                            value={variant.name}
+                            checked={active}
+                            onChange={() => setVariant(variant)}
+                            style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                          />
+                          <div style={{ flex: 1 }}>
+                            <span
+                              style={{
+                                display: "block",
+                                fontFamily: "var(--bp-font-heading)",
+                                fontSize: "var(--bp-text-sm)",
+                                textTransform: "uppercase",
+                                color: "var(--bp-text)",
+                              }}
+                            >
+                              {variant.name}
                             </span>
-                          )}
-                          {variant.price && (
-                            <span style={{ display: "block", marginTop: "0.5rem", fontFamily: "var(--bp-font-mono)", fontSize: "var(--bp-text-sm)", color: accentColor }}>
-                              {variant.price}
-                            </span>
-                          )}
-                        </div>
-                        {active && (
-                          <div style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}>
-                            <svg width={16} height={16} fill="currentColor" viewBox="0 0 20 20" style={{ color: accentColor }}>
-                              <path fillRule="evenodd" d={checkPath} clipRule="evenodd" />
-                            </svg>
+                            {variant.description && (
+                              <span style={{ display: "block", marginTop: "0.25rem", fontFamily: "var(--bp-font-mono)", fontSize: "var(--bp-text-xs)", color: "var(--bp-text-dim)" }}>
+                                {variant.description}
+                              </span>
+                            )}
+                            {variant.price && (
+                              <span style={{ display: "block", marginTop: "0.5rem", fontFamily: "var(--bp-font-mono)", fontSize: "var(--bp-text-sm)", color: accentColor }}>
+                                {variant.price}
+                              </span>
+                            )}
                           </div>
-                        )}
-                      </label>
-                    );
-                  })}
-                </div>
-              </fieldset>
+                          {active && (
+                            <div style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}>
+                              <svg width={16} height={16} fill="currentColor" viewBox="0 0 20 20" style={{ color: accentColor }}>
+                                <path fillRule="evenodd" d={checkPath} clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </label>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+              )
             )}
 
             {/* Quantity */}
@@ -396,7 +439,7 @@ export function ProductDetail({
             <div style={{ marginTop: "2rem" }}>
               <button
                 type="submit"
-                disabled={isAddingToCart}
+                disabled={isAddingToCart || smartPending}
                 style={{
                   width: "100%",
                   display: "flex",

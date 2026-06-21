@@ -15,6 +15,21 @@ export interface ProductVariant {
   stripePriceId?: string;
   /** Stripe product ID — consumed by the app, not the design system */
   stripeProductId?: string;
+  /**
+   * Whether this variant is available for purchase.
+   * Generic e-commerce field — not Shopify-specific.
+   * When false the variant is shown as out-of-stock / disabled in SmartVariantSelector.
+   */
+  availableForSale?: boolean;
+}
+
+/**
+ * A grouped dimension from a parsed multi-option variant set.
+ * e.g. { name: "Size", values: ["XS","S","M","L"] }
+ */
+export interface VariantOptionGroup {
+  name: string;
+  values: string[];
 }
 
 export interface Product {
