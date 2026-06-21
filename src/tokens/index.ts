@@ -1,3 +1,9 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// brutnoir-pro · Design Tokens v0.3
+// NF2 palette — monotone primary grays, vivid semantic accents
+// Aesthetic direction: Windows 95 / brutalist dark UI
+// ─────────────────────────────────────────────────────────────────────────────
+
 export type ColorKey =
   | "bg" | "surface" | "border"
   | "text" | "textMuted" | "textDim"
@@ -11,14 +17,58 @@ export type ColorKey =
   | "orange" | "orangeBg"
   | "pink" | "pinkBg";
 
-export type FontKey = "heading" | "mono";
+export type FontKey = "heading" | "mono" | "body";
+export type SpaceKey = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+export type TextSizeKey = "xs" | "sm" | "base" | "md" | "lg" | "xl" | "xxl";
+export type RadiusKey = "none" | "sm" | "DEFAULT" | "lg";
+export type ZKey = "sidebar" | "header" | "dropdown" | "modal" | "tooltip" | "toast";
 
-// NF2 palette — monotone primary grays, vivid semantic accents
-// Primary: pure neutral grays (#0B0B0B → #FAFAFA)
-// Success: lime-green (#A3DA08)  Warning: amber (#E2B51D)
-// Error/Tertiary: scarlet (#F1300E)  Neutral: muted mauve (#8C738B)
+// ── Shared structural tokens (same across themes) ────────────────────────────
+const sharedTokens: Record<string, string> = {
+  // ── Spacing scale ──────────────────────────────────────────────────────────
+  "--bp-space-xs":   "4px",
+  "--bp-space-sm":   "8px",
+  "--bp-space-md":   "12px",
+  "--bp-space-lg":   "16px",
+  "--bp-space-xl":   "24px",
+  "--bp-space-xxl":  "32px",
+
+  // ── Font size scale ────────────────────────────────────────────────────────
+  "--bp-text-xs":    "11px",
+  "--bp-text-sm":    "12px",
+  "--bp-text-base":  "14px",
+  "--bp-text-md":    "16px",
+  "--bp-text-lg":    "18px",
+  "--bp-text-xl":    "24px",
+  "--bp-text-xxl":   "32px",
+
+  // ── Border radius ──────────────────────────────────────────────────────────
+  "--bp-radius-none": "0",
+  "--bp-radius-sm":   "2px",
+  "--bp-radius":      "4px",
+  "--bp-radius-lg":   "8px",
+
+  // ── Transitions ───────────────────────────────────────────────────────────
+  "--bp-transition-fast": "0.1s ease",
+  "--bp-transition":      "0.15s ease",
+
+  // ── Z-index layers ────────────────────────────────────────────────────────
+  "--bp-z-sidebar":   "100",
+  "--bp-z-header":    "200",
+  "--bp-z-dropdown":  "400",
+  "--bp-z-modal":     "1000",
+  "--bp-z-tooltip":   "2000",
+  "--bp-z-toast":     "3000",
+
+  // ── Typography stacks ─────────────────────────────────────────────────────
+  "--bp-font-heading": "'obviously-variable', 'Georgia', 'Times New Roman', serif",
+  "--bp-font-mono":    "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
+  "--bp-font-body":    "'DM Sans', 'Inter', 'Helvetica Neue', system-ui, sans-serif",
+};
 
 export const darkTheme: Record<string, string> = {
+  ...sharedTokens,
+
   // ── Backgrounds / surfaces ────────────────────────────────────────────────
   "--bp-bg":            "#0B0B0B",    // primary-950 — near-black
   "--bp-surface":       "#1A1A1A",    // primary-900
@@ -39,7 +89,7 @@ export const darkTheme: Record<string, string> = {
   "--bp-red-hover":     "#FF4F30",    // error-500
   "--bp-red-bg":        "#4C0E03",    // error-950
 
-  // ── Info (muted blue — kept from prior palette) ────────────────────────────
+  // ── Info (muted blue) ────────────────────────────────────────────────────
   "--bp-blue":          "#4a8fc8",
   "--bp-blue-bg":       "#061e2e",
 
@@ -48,13 +98,13 @@ export const darkTheme: Record<string, string> = {
   "--bp-warning-hover": "#E6C329",    // warning-400
   "--bp-warning-bg":    "#3D210B",    // warning-950
 
-  // ── Tertiary / highlight (scarlet, same as error) ─────────────────────────
+  // ── Tertiary / highlight ──────────────────────────────────────────────────
   "--bp-tertiary":      "#F1300E",    // tertiary-600
 
   // ── Neutral (muted mauve) ─────────────────────────────────────────────────
   "--bp-neutral":       "#8C738B",    // neutral-500
 
-  // ── Cyan (teal-ish) ───────────────────────────────────────────────────────
+  // ── Cyan ──────────────────────────────────────────────────────────────────
   "--bp-cyan":          "#22D3EE",    // cyan-400
   "--bp-cyan-bg":       "#083344",    // cyan-950
 
@@ -70,12 +120,16 @@ export const darkTheme: Record<string, string> = {
   "--bp-pink":          "#F472B6",    // pink-400
   "--bp-pink-bg":       "#500724",    // pink-950
 
-  // ── Typography stacks ─────────────────────────────────────────────────────
-  "--bp-font-heading":  "'obviously-variable', 'Georgia', 'Times New Roman', serif",
-  "--bp-font-mono":     "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
+  // ── Shadows (hard-offset brutalist) ──────────────────────────────────────
+  "--bp-shadow":        "2px 2px 0 rgba(0,0,0,0.5)",
+  "--bp-shadow-sm":     "1px 1px 0 rgba(0,0,0,0.5)",
+  "--bp-shadow-inset":  "inset 1px 1px 2px rgba(0,0,0,0.5), inset -1px -1px 0 rgba(255,255,255,0.03)",
+  "--bp-shadow-modal":  "4px 4px 0 rgba(0,0,0,0.7)",
 };
 
 export const lightTheme: Record<string, string> = {
+  ...sharedTokens,
+
   // ── Backgrounds / surfaces ────────────────────────────────────────────────
   "--bp-bg":            "#FAFAFA",    // primary-50 — clean white
   "--bp-surface":       "#FFFFFF",
@@ -127,12 +181,15 @@ export const lightTheme: Record<string, string> = {
   "--bp-pink":          "#DB2777",    // pink-600 (darkened for light bg)
   "--bp-pink-bg":       "#FDF2F8",    // pink-50
 
-  // ── Typography stacks ─────────────────────────────────────────────────────
-  "--bp-font-heading":  "'obviously-variable', 'Georgia', 'Times New Roman', serif",
-  "--bp-font-mono":     "'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace",
+  // ── Shadows ───────────────────────────────────────────────────────────────
+  "--bp-shadow":        "2px 2px 0 rgba(0,0,0,0.2)",
+  "--bp-shadow-sm":     "1px 1px 0 rgba(0,0,0,0.2)",
+  "--bp-shadow-inset":  "inset 1px 1px 2px rgba(0,0,0,0.12), inset -1px -1px 0 rgba(255,255,255,0.7)",
+  "--bp-shadow-modal":  "4px 4px 0 rgba(0,0,0,0.25)",
 };
 
 export const tokens = {
+  // Colors
   bg:            "var(--bp-bg)",
   surface:       "var(--bp-surface)",
   border:        "var(--bp-border)",
@@ -160,6 +217,43 @@ export const tokens = {
   orangeBg:      "var(--bp-orange-bg)",
   pink:          "var(--bp-pink)",
   pinkBg:        "var(--bp-pink-bg)",
+  // Fonts
   fontHeading:   "var(--bp-font-heading)",
   fontMono:      "var(--bp-font-mono)",
+  fontBody:      "var(--bp-font-body)",
+  // Spacing
+  spaceXs:       "var(--bp-space-xs)",
+  spaceSm:       "var(--bp-space-sm)",
+  spaceMd:       "var(--bp-space-md)",
+  spaceLg:       "var(--bp-space-lg)",
+  spaceXl:       "var(--bp-space-xl)",
+  spaceXxl:      "var(--bp-space-xxl)",
+  // Text sizes
+  textXs:        "var(--bp-text-xs)",
+  textSm:        "var(--bp-text-sm)",
+  textBase:      "var(--bp-text-base)",
+  textMd:        "var(--bp-text-md)",
+  textLg:        "var(--bp-text-lg)",
+  textXl:        "var(--bp-text-xl)",
+  textXxl:       "var(--bp-text-xxl)",
+  // Shadows
+  shadow:        "var(--bp-shadow)",
+  shadowSm:      "var(--bp-shadow-sm)",
+  shadowInset:   "var(--bp-shadow-inset)",
+  shadowModal:   "var(--bp-shadow-modal)",
+  // Radius
+  radiusNone:    "var(--bp-radius-none)",
+  radiusSm:      "var(--bp-radius-sm)",
+  radius:        "var(--bp-radius)",
+  radiusLg:      "var(--bp-radius-lg)",
+  // Transitions
+  transitionFast: "var(--bp-transition-fast)",
+  transition:     "var(--bp-transition)",
+  // Z-index
+  zSidebar:      "var(--bp-z-sidebar)",
+  zHeader:       "var(--bp-z-header)",
+  zDropdown:     "var(--bp-z-dropdown)",
+  zModal:        "var(--bp-z-modal)",
+  zTooltip:      "var(--bp-z-tooltip)",
+  zToast:        "var(--bp-z-toast)",
 } as const;
