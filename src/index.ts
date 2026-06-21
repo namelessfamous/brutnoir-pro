@@ -186,5 +186,5 @@ export {
   SmartVariantSelector,
   canUseSmartSelector,
   DEFAULT_CLOTHING_COLORS,
-} from "./ecommerce/SmartVariantSelector";
-export type { SmartVariantSelectorProps } from "./ecommerce/SmartVariantSelector";
+} from "./ecommerce/index";
+export type { SmartVariantSelectorProps } from "./ecommerce/index";
