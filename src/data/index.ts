@@ -1,5 +1,12 @@
 export { DataTable } from "./DataTable";
-export type { Column, DataTableProps } from "./DataTable";
+export type {
+  Column,
+  DataTableColumn,
+  DataTableAction,
+  DataTablePagination,
+  DataTableSort,
+  DataTableProps,
+} from "./DataTable";
 
 export { LogStream } from "./LogStream";
 export type { LogStreamProps } from "./LogStream";

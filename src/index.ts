@@ -94,7 +94,14 @@ export type { DropdownProps, DropdownItem, MenuProps, MenuItemProps } from "./na
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 export { DataTable } from "./data/DataTable";
-export type { Column, DataTableProps } from "./data/DataTable";
+export type {
+  Column,
+  DataTableColumn,
+  DataTableAction,
+  DataTablePagination,
+  DataTableSort,
+  DataTableProps,
+} from "./data/DataTable";
 
 export { LogStream } from "./data/LogStream";
 export type { LogStreamProps } from "./data/LogStream";

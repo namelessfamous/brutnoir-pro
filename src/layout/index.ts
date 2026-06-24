@@ -6,6 +6,7 @@ export type { SidebarProps, SidebarItem, SidebarGroup } from "./Sidebar";
 
 export { PageHeader } from "./PageHeader";
 export type { PageHeaderProps } from "./PageHeader";
+// mobileAction + responsive clamp sizes added in v0.6.0
 
 export { Card } from "./Card";
 export type { CardProps } from "./Card";
