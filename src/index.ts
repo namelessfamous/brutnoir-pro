@@ -53,6 +53,15 @@ export type { TooltipProps } from "./primitives/Tooltip";
 
 export { ThemeToggle } from "./primitives/ThemeToggle";
 
+export { SegmentedControl } from "./primitives/SegmentedControl";
+export type { SegmentedControlProps, SegmentedControlOption } from "./primitives/SegmentedControl";
+
+export { FileUpload } from "./primitives/FileUpload";
+export type { FileUploadProps } from "./primitives/FileUpload";
+
+export { InputGroup } from "./primitives/InputGroup";
+export type { InputGroupProps } from "./primitives/InputGroup";
+
 export { NfSvgIcon, COLOR_VAR, makeIcon } from "./primitives/NfSvgIcon";
 export type { NfSvgIconProps, NfIconColor } from "./primitives/NfSvgIcon";
 
@@ -81,6 +90,15 @@ export type { AppBarProps, HeaderProps } from "./layout/AppBar";
 export { Divider } from "./layout/Divider";
 export type { DividerProps } from "./layout/Divider";
 
+export { StatCard } from "./layout/StatCard";
+export type { StatCardProps, StatCardTrend } from "./layout/StatCard";
+
+export { Grid } from "./layout/Grid";
+export type { GridProps, GridCols } from "./layout/Grid";
+
+export { Section } from "./layout/Section";
+export type { SectionProps } from "./layout/Section";
+
 // ── Feedback ──────────────────────────────────────────────────────────────────
 export { Alert } from "./feedback/Alert";
 export type { AlertProps, AlertVariant } from "./feedback/Alert";
@@ -103,6 +121,9 @@ export type { SpinnerProps, LoaderProps } from "./feedback/Spinner";
 export { EmptyState } from "./feedback/EmptyState";
 export type { EmptyStateProps } from "./feedback/EmptyState";
 
+export { Skeleton } from "./feedback/Skeleton";
+export type { SkeletonProps, SkeletonVariant } from "./feedback/Skeleton";
+
 // ── Navigation ────────────────────────────────────────────────────────────────
 export { Pagination } from "./navigation/Pagination";
 export type { PaginationProps } from "./navigation/Pagination";
@@ -118,6 +139,9 @@ export type { StepIndicatorProps, StepIndicatorStep } from "./navigation/StepInd
 
 export { Dropdown, Menu } from "./navigation/Dropdown";
 export type { DropdownProps, DropdownItem, MenuProps, MenuItemProps } from "./navigation/Dropdown";
+
+export { ButtonGroup } from "./navigation/ButtonGroup";
+export type { ButtonGroupProps } from "./navigation/ButtonGroup";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 export { StaticTable } from "./data/StaticTable";
