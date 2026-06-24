@@ -15,6 +15,18 @@ export { GlobalStyles, darkThemeCss, lightThemeCss } from "./tokens/GlobalStyles
 export { useTheme, ThemeProvider } from "./hooks/useTheme";
 
 // ── Primitives ────────────────────────────────────────────────────────────────
+export { Checkbox } from "./primitives/Checkbox";
+export type { CheckboxProps } from "./primitives/Checkbox";
+
+export { Radio } from "./primitives/Radio";
+export type { RadioProps, RadioOption } from "./primitives/Radio";
+
+export { Switch } from "./primitives/Switch";
+export type { SwitchProps } from "./primitives/Switch";
+
+export { Range } from "./primitives/Range";
+export type { RangeProps } from "./primitives/Range";
+
 export { Button } from "./primitives/Button";
 export type { ButtonProps } from "./primitives/Button";
 
@@ -45,6 +57,12 @@ export { NfSvgIcon, COLOR_VAR, makeIcon } from "./primitives/NfSvgIcon";
 export type { NfSvgIconProps, NfIconColor } from "./primitives/NfSvgIcon";
 
 // ── Layout ────────────────────────────────────────────────────────────────────
+export { Accordion } from "./layout/Accordion";
+export type { AccordionProps, AccordionItem } from "./layout/Accordion";
+
+export { Drawer } from "./layout/Drawer";
+export type { DrawerProps, DrawerPlacement } from "./layout/Drawer";
+
 export { AdminLayout, NavItem } from "./layout/AdminLayout";
 export type { AdminLayoutProps, NavItemProps } from "./layout/AdminLayout";
 
@@ -64,6 +82,12 @@ export { Divider } from "./layout/Divider";
 export type { DividerProps } from "./layout/Divider";
 
 // ── Feedback ──────────────────────────────────────────────────────────────────
+export { Alert } from "./feedback/Alert";
+export type { AlertProps, AlertVariant } from "./feedback/Alert";
+
+export { Progress } from "./feedback/Progress";
+export type { ProgressProps, ProgressVariant } from "./feedback/Progress";
+
 export { Modal } from "./feedback/Modal";
 export type { ModalProps } from "./feedback/Modal";
 
@@ -80,6 +104,9 @@ export { EmptyState } from "./feedback/EmptyState";
 export type { EmptyStateProps } from "./feedback/EmptyState";
 
 // ── Navigation ────────────────────────────────────────────────────────────────
+export { Pagination } from "./navigation/Pagination";
+export type { PaginationProps } from "./navigation/Pagination";
+
 export { Tabs } from "./navigation/Tabs";
 export type { TabsProps, TabItem } from "./navigation/Tabs";
 
@@ -93,6 +120,12 @@ export { Dropdown, Menu } from "./navigation/Dropdown";
 export type { DropdownProps, DropdownItem, MenuProps, MenuItemProps } from "./navigation/Dropdown";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
+export { StaticTable } from "./data/StaticTable";
+export type { StaticTableProps, StaticTableColumn } from "./data/StaticTable";
+
+export { ListItem, ListGroup } from "./data/ListItem";
+export type { ListItemProps, ListGroupProps } from "./data/ListItem";
+
 export { DataTable } from "./data/DataTable";
 export type {
   Column,
