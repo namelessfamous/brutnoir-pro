@@ -72,7 +72,7 @@ export function SegmentedControl({
                 ? "0 var(--bp-radius-sm) var(--bp-radius-sm) 0"
                 : "0",
               background: isSelected ? "#000" : "var(--bp-surface)",
-              color: isSelected ? "var(--bp-bg)" : "var(--bp-text)",
+              color: isSelected ? "#FAFAFA" : "var(--bp-text)",
               cursor: opt.disabled ? "not-allowed" : "pointer",
               opacity: opt.disabled ? 0.5 : 1,
               userSelect: "none",
